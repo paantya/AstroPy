@@ -38,15 +38,15 @@ def elerToDecartXYZ(a, e, i, omega, w, t_obs, t_oe, eps = 1e-12,c = 299792458, M
 
 	E = toZiroTwoPi(E)
 
-	X_ = a*(np.cos(E) - e)
-	Y_ = a * np.qwrt(1 - np.power(e,2)) * np.cos(E)
+	X_orb  = a*(np.cos(E) - e)
+	Y_orb = a * np.qwrt(1 - np.power(e,2)) * np.cos(E)
 	
 	u = w
-	X_orb = X_ * np.cos(u)
-	Y_orb = Y_ * np.sin(u)
+	X_ = X_orb * np.cos(u)
+	Y_ = Y_orb * np.sin(u)
 
-	x = X_orb * np.cos(omega) - Y_orb * np.cos(i)* np.sin(omega)
-	y = Y_orb * np.sin(omega) - Y_orb * np.cos(i)* np.cos(omega)
-	z = Y_orb * np.sin(i)
+	x = X_ * np.cos(omega) - Y_ * np.cos(i)* np.sin(omega)
+	y = Y_ * np.sin(omega) - Y_ * np.cos(i)* np.cos(omega)
+	z = Y_ * np.sin(i)
 	
 	return [x,y,z]
